@@ -8,3 +8,11 @@ CREATE TABLE artist (
     bio VARCHAR(255),
     fan_number INTEGER
 );
+
+CREATE TABLE album (
+    id   INTEGER   PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(70) NOT NULL,
+    release_date DATE,
+    artist_id INT,
+    foreign key (artist_id) references artist(id)
+);

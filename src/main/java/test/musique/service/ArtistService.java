@@ -11,4 +11,5 @@ public interface ArtistService {
     Artist insert(Artist artist);
     Artist update(Long id, Artist artist);
     void delete(Long id);
+    
 }

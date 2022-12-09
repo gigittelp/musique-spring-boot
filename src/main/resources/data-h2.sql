@@ -1,4 +1,6 @@
 use MUSIQUE_DB;
+
+/* liste des artistes */
 insert into artist(name, bio, fan_number)
     values('Celtic woman','En 2004, les producteurs Sharon Browne et David Downes, directeur musical...',31760);
 insert into artist(name, bio, fan_number)
@@ -13,3 +15,17 @@ insert into artist(name, bio, fan_number)
     values('Trois Cafés Gourmands','',167304);
 insert into artist(name, bio, fan_number)
     values ('Nolwenn Leroy','C''est le 28 septembre 1982 que voit le jour, à Saint-Renan (Finistère) que voile jour Nolwenn Le Magueresse',230900);
+
+/* album Kendji */
+insert into album(id, artist_id, title, release_date) 
+	values (1, 3, 'Kendji', '2015-05-04');
+
+/* album Le Meilleur de la Musique Irlandaise */	
+insert into album(id, artist_id, title, release_date) 
+	values (2, 1, 'Le Meilleur de la Musique Irlandaise - Les Plus Beaux Airs Celtiques', '2014-03-03');
+
+
+/* album Ancient Land */	
+insert into album(id, artist_id, title, release_date) 
+	values (3, 1, 'Ancient Land', '2018-09-28');
+
