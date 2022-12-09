@@ -6,6 +6,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
 
 
 @Entity
@@ -15,10 +18,12 @@ public class Artist {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	
 	private String name;
 
 	private String bio;
 
+	
 	private Integer fanNumber;
 	
 	

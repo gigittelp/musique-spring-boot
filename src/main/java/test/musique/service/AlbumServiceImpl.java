@@ -28,4 +28,11 @@ public class AlbumServiceImpl implements AlbumService  {
 	public List<Album> findByArtist(Long id) {
 		return repository.findByArtistId(id);
 	}
+	
+	@Override
+	public Album insert(Album album) {
+		return repository.save(album);
+	}
+	
+	
 }

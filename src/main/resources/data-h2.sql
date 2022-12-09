@@ -12,13 +12,17 @@ insert into artist(name, bio, fan_number)
 insert into artist(name, bio, fan_number)
     values('Patrick Fiori','Patrick Fiori, né le 23 septembre 1969 sous le nom de Jean-François Chouchayan',216351);
 insert into artist(name, bio, fan_number)
-    values('Trois Cafés Gourmands','',167304);
+    values('Trois Cafés Gourmands','rien à dire',167304);
 insert into artist(name, bio, fan_number)
     values ('Nolwenn Leroy','C''est le 28 septembre 1982 que voit le jour, à Saint-Renan (Finistère) que voile jour Nolwenn Le Magueresse',230900);
 
 /* album Kendji */
 insert into album(id, artist_id, title, release_date) 
-	values (1, 3, 'Kendji', '2015-05-04');
+	values (1, 3, 'Album new Kendji', '2015-05-04');
+
+ /* album 3cg */   
+    insert into album(id, artist_id, title, release_date) 
+	values (4, 6, 'first album', '2020-10-03');
 
 /* album Le Meilleur de la Musique Irlandaise */	
 insert into album(id, artist_id, title, release_date) 

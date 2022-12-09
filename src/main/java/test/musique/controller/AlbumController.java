@@ -8,10 +8,13 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
 import test.musique.model.Album;
 import test.musique.service.AlbumService;
 
@@ -39,6 +42,10 @@ public class AlbumController {
 		return ResponseEntity.ok().body(listAlbum);
 	}
 	
+	@PostMapping("/albums")
+	ResponseEntity<Album> addAlbum(@Valid @RequestBody Album album){
+		return ResponseEntity.ok().body(service.insert(album));
+	}
 	
 	@GetMapping("/artists/{id}/albums")
 	public ResponseEntity<List<Album>> getAllAlbum(@PathVariable(value = "id") long id) {

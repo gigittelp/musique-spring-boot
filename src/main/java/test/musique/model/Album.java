@@ -9,6 +9,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
 
 
 @Entity
@@ -18,10 +21,12 @@ public class Album {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     
-   
+    //title VARCHAR(70) NOT NULL
+  	@NotBlank(message = "Name can't be empty")
+  	@Size(min = 1, max = 70, message = "Name must be between 1 and 70 characters")
 	private String title;
 
-	
+  	@PastOrPresent(message = "Release date must be past")
 	private LocalDate releaseDate;
 	
 	@ManyToOne @JoinColumn(name = "artist_id")
