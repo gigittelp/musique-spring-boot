@@ -16,13 +16,22 @@ import test.musique.repository.ArtistRepository;
 @Service
 public class ArtistServiceImpl implements ArtistService {
 
-    @Autowired
+    
     private ArtistRepository repositoryArtist;
-    @Autowired
+    
     private AlbumRepository repositoryAlbum;
     
-    
-    @Override
+  
+    public ArtistServiceImpl(@Autowired ArtistRepository repositoryArtist, @Autowired AlbumRepository repositoryAlbum) {
+		super();
+		// TODO Auto-generated constructor stub
+		this.repositoryAlbum = repositoryAlbum;
+		this.repositoryArtist = repositoryArtist;
+		
+		
+	}
+
+	@Override
     public List<Artist> findAll(String search) {
         if (! "".equals(search))
             return repositoryArtist.findByNameContaining(search);

@@ -11,11 +11,16 @@ import test.musique.repository.AlbumRepository;
 @Service
 public class AlbumServiceImpl implements AlbumService  {
 
-	
-	
-	@Autowired
+
+	//@Autowired
 	private AlbumRepository repository;
 	
+	public AlbumServiceImpl(@Autowired AlbumRepository repository) {
+		super();
+		// TODO Auto-generated constructor stub
+		this.repository = repository;
+	}
+
 	@Override
 	public List<Album> findAll(String search) {
 		if (! "".equals(search))
