@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
 import test.musique.model.Artist;
 import test.musique.service.ArtistService;
 
@@ -77,7 +78,6 @@ public class ArtistController {
         Optional<Artist> artist = service.findById(id);
         if(artist.isEmpty())
             return ResponseEntity.notFound().build();
-        
         service.delete(artist.get().getId());
         return ResponseEntity.accepted().build();
     }

@@ -2,7 +2,7 @@ package test.musique.model;
 
 import java.time.LocalDate;
 
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +24,7 @@ public class Album {
     //title VARCHAR(70) NOT NULL
   	@NotBlank(message = "Name can't be empty")
   	@Size(min = 1, max = 70, message = "Name must be between 1 and 70 characters")
+  	@Column(unique = true)
 	private String title;
 
   	@PastOrPresent(message = "Release date must be past")

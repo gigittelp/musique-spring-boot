@@ -4,33 +4,40 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import test.musique.common.AppException;
+import test.musique.model.Album;
 import test.musique.model.Artist;
+import test.musique.repository.AlbumRepository;
 import test.musique.repository.ArtistRepository;
 
 @Service
 public class ArtistServiceImpl implements ArtistService {
 
     @Autowired
-    private ArtistRepository repository;
+    private ArtistRepository repositoryArtist;
+    @Autowired
+    private AlbumRepository repositoryAlbum;
+    
     
     @Override
     public List<Artist> findAll(String search) {
         if (! "".equals(search))
-            return repository.findByNameContaining(search);
+            return repositoryArtist.findByNameContaining(search);
         else
-            return repository.findAll();
+            return repositoryArtist.findAll();
     }
     
     @Override
     public Optional<Artist> findById (Long id) {
-        return repository.findById(id);
+        return repositoryArtist.findById(id);
     }
     
     @Override
     public Artist insert(Artist artist) {
-        return repository.save(artist);
+        return repositoryArtist.save(artist);
     }
     
     @Override
@@ -47,7 +54,7 @@ public class ArtistServiceImpl implements ArtistService {
                 artistToUpdate.setBio(artist.getBio());
             if (artist.getFanNumber() != null)
                 artistToUpdate.setFanNumber(artist.getFanNumber());
-            return repository.save(artistToUpdate);
+            return repositoryArtist.save(artistToUpdate);
         }
         
         return null;
@@ -56,8 +63,16 @@ public class ArtistServiceImpl implements ArtistService {
     @Override
     public void delete(Long id) {
         Optional<Artist> optionalArtist = this.findById(id);
+       
         if (optionalArtist.isPresent()) {
-            repository.delete(optionalArtist.get());
+        	
+        	List <Album> albums = repositoryAlbum.findByArtistId(id);
+        	if (!albums.isEmpty())
+				throw new AppException("Invalid Delete", "Artist with Albums");
+        		//  n'affiche pas mon message mais celui "record already exist"
+        		// throw new DataIntegrityViolationException("Artist with Albums"); 
+        	
+            repositoryArtist.delete(optionalArtist.get());
         }
     }
 
